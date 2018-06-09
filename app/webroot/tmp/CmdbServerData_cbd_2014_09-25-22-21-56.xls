@@ -1,0 +1,9 @@
+CMDB_Server_ID,ServerName,GIU_Designation,IP_Address,sys_class_name,sys_id,Lifecycle_Status,Proposed_Lifecycle_Status,Status_Change_Date,Is_Virtual,Asset_Company,Billable_CBD,Non_Standard,Department,Location,Location_Area,Region,Serial_Number,Asset_tag,Manufacturer,Model_ID,Monitoring_Status,Operating_System,OS_Version,Host_domain,CPU_Name,CPU_speed_MHz,CPU_Type,CPU_Count,Disk_space_GB,RAM_MB,Server_Function,Server_Role,updated_by,Updated_On,created_by,Created_On,Monitoring_Type,Monitoring_Location,Project_Type,Reason,Backup_Type,Backup_Status,Backup_Retention_Demon,Backup_Retention_Value,Backup_Software,Backup_Server_Name,DR_Recovery_Tier_Level,Hardware_Disposed,Hardware_Disposed_Date,Rack,Rack_U_position
+Array
+Array
+Array
+Array
+Array
+Array
+Array
+Array
