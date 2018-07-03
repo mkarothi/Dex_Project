@@ -20,6 +20,22 @@ class ApplicationmonitorController extends AppController {
 		$jobResultData = $this->ApplicationMonitoringConfig->find('all'); //, array("order" => "Created_On desc" )
 		$this->set('jobResultData',  $jobResultData);
 	}
+	
+	function restartserver($configID){
+	   $this->autoRender = false;
+	   $this->log("restartserver Start");
+	   try{
+          	exec("<FILE_WITH_PATH> " .$configID );
+		  $result['status'] = 1;
+		  $result['message'] = "Restart initiated";
+	   } catch(Exception $e){
+   		  $result['status'] = 0;
+		  $result['message'] = $e->getMessage();
+                 $this->log("restartserver has error - ". $e->getMessage());
+           }
+	   echo json_encode($result);
+	   exit;
+	}
 	  
 }
 
