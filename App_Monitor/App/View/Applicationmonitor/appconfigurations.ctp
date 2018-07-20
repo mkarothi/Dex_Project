@@ -1,8 +1,18 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <div class="col-sm-11 text-left">
 	<br>
-	<input class="form-control" id="myInput" type="text" placeholder="Search...">
+	<div class="col-sm-6">
+		<input class="form-control" id="myInput" type="text" placeholder="Search...">
+	</div>
+	<div class="col-sm-1 pull-right">
+		<form method="POST">
+			<input name="export" type="hidden" value="export">
+			<input class="form-control" type="submit" value="export">
+		</form>
+	</div>
 	<br>
+	
+	<div class="col-sm-12">
 	<?php if($jobResultData){ ?>
 	  	<table class="table table-condensed table-responsive table-bordered">
 		 <thead><tr> 		
@@ -33,6 +43,7 @@
 	  	</tbody>
 	  </table>
   <?php } ?>
+  </div>
 </div>
 
 <script>
@@ -43,9 +54,8 @@ $(document).ready(function(){
       $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
     });
   });
-  
-  
 });
+
 function restartserver(configId){
   	ajaxUrl = "/applicationmonitor/restartserver/"+configId;
   	$.ajax( {
