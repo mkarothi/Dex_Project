@@ -1,6 +1,14 @@
 <div class="col-sm-11 text-left">
 	<br>
-	<input class="form-control" id="myInput" type="text" placeholder="Search...">
+	<div class="col-sm-6">
+		<input class="form-control" id="myInput" type="text" placeholder="Search...">
+	</div>
+	<div class="col-sm-1 pull-right">
+		<form method="POST">
+			<input name="export" type="hidden" value="export">
+			<input class="form-control" type="submit" value="export">
+		</form>
+	</div>
 	<br>
 	<?php if($jobResultData){ ?>
 	  	<table class="table table-condensed table-responsive table-bordered">
