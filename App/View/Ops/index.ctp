@@ -6,7 +6,14 @@
 	<div class="col-sm-1 pull-right">
 		<form method="POST">
 			<input name="export" type="hidden" value="export">
-			<input class="form-control" type="submit" value="export">
+			<input class="form-control" type="submit" value="Export">
+		</form>
+	</div>
+	<div class="col-sm-1 pull-right">
+		<form method="POST">
+			<input name="export" type="hidden" value="export">
+			<input name="days" type="hidden" value="7">
+			<input class="form-control" type="submit" value="Export 1 Week">
 		</form>
 	</div>
 	<br>
