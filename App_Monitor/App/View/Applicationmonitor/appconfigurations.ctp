@@ -11,7 +11,7 @@
 		</form>
 	</div>
 	<br>
-	
+	<br>
 	<div class="col-sm-12">
 	<?php if($jobResultData){ ?>
 	  	<table class="table table-condensed table-responsive table-bordered">
