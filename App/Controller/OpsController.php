@@ -9,7 +9,13 @@ class OpsController extends AppController {
 	function index(){
 		$this->loadModel('BatchJobsStatusData');
 		
-		$jobResultData = $this->BatchJobsStatusData->find('all', array("conditions" => array('BatchJobsStatusData.Latest_Check_Time > DATE_SUB(NOW(), INTERVAL 24 HOUR) ' ), 
+		$conditions = array('BatchJobsStatusData.Latest_Check_Time > DATE_SUB(NOW(), INTERVAL 24 HOUR) ' );
+		
+		if(isset($_POST['days']) && $_POST['days'] == 7){
+			$conditions = array('BatchJobsStatusData.Latest_Check_Time > DATE_SUB(NOW(), INTERVAL 7 DAY) ' );
+		}
+		
+		$jobResultData = $this->BatchJobsStatusData->find('all', array("conditions" => $conditions, 
 																	   "order" => "Latest_Check_Time desc" ) );
 		$this->set('jobResultData',  $jobResultData);
 		if(isset($_POST['export']) && $_POST['export'] == 'export'){
@@ -30,7 +36,15 @@ class OpsController extends AppController {
 	function jobreport(){
 		$this->loadModel('BatchJobsStatusData');
 		
-		$jobResultData = $this->BatchJobsStatusData->find('all', array("conditions" => array('BatchJobsStatusData.Latest_Check_Time > DATE_SUB(NOW(), INTERVAL 24 HOUR)', 'Job_latest_status != ' => 'Success' ), 
+		$conditions = array('BatchJobsStatusData.Latest_Check_Time > DATE_SUB(NOW(), INTERVAL 24 HOUR) ' );
+		
+		if(isset($_POST['days']) && $_POST['days'] == 7){
+			$conditions = array('BatchJobsStatusData.Latest_Check_Time > DATE_SUB(NOW(), INTERVAL 7 DAY) ' );
+		}
+		
+		$conditions['Job_latest_status != '] = 'Success';
+		
+		$jobResultData = $this->BatchJobsStatusData->find('all', array("conditions" => $conditions, 
 																	   "order" => "Latest_Check_Time desc" ) );
 		$this->set('jobResultData',  $jobResultData);
 		
@@ -42,19 +56,19 @@ class OpsController extends AppController {
 	function exportsheet($results, $tableName){
 		$this->autoRender = FALSE;
 		foreach($results[0][$tableName] as $fieldNames => $values){ 
-            		$header[] = $fieldNames ;
-        	}
-        	$rows[] = $header;
-        	foreach($results as $result) {
-            		$rowValues = array();
-            		foreach($result[$tableName] as $values) { 
-                		$rowValues[] = $values;
-            		}
-            		$rows[] = $rowValues;
-        	}
-        	$exportArray = $rows;
-        	$filename = $tableName."_".date("Y-m-d-H-i-s") .".xls";
-        	$this->exportresults($exportArray, $filename);
+            $header[] = $fieldNames ;
+        }
+        $rows[] = $header;
+        foreach($results as $result) {
+            $rowValues = array();
+            foreach($result[$tableName] as $values) { 
+                $rowValues[] = $values;
+            }
+            $rows[] = $rowValues;
+        }
+        $exportArray = $rows;
+        $filename = $tableName."_".date("Y-m-d-H-i-s") .".xls";
+        $this->exportresults($exportArray, $filename);
 	}
   
 }
