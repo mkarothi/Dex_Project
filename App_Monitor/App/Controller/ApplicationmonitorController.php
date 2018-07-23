@@ -49,6 +49,7 @@ class ApplicationmonitorController extends AppController {
 
 
 	function exportsheet($results, $tableName){
+		$this->autoRender = FALSE;
 		foreach($results[0][$tableName] as $fieldNames => $values){ 
             $header[] = $fieldNames ;
         }
