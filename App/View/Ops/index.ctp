@@ -30,7 +30,17 @@
 	  	<?php foreach($jobResultData as $jobResult){ ?>
 	  		<tr>
 		  	<?php foreach($jobResult['BatchJobsStatusData'] as $columnName => $value){ ?>
-		  		<?php if($columnName != 'Job_Latest_Status'){ ?>
+		  		
+		  		<?php if($columnName == 'Job_Entry'){ ?>
+		  			<td>
+		  				<?php if($jobResult['BatchJobsStatusData']['Job_Actual_End_Time'] == 'xx:xx') { ?> 
+		  					<a data-toggle="modal" href="#myModal" class="myBtn"><?php echo $value;?> </a>
+		  					
+	  					<?php }else{ ?> 	
+		  					<?php echo $value;?>
+		  				<?php } ?>
+		  			</td>
+		  		<?php } elseif($columnName != 'Job_Latest_Status'){ ?>
 	  				<td><?php echo $value;?></td>
 		  		<?php } else { ?>
 		  			<?php if($value == 'Success'){
@@ -59,6 +69,10 @@ $(document).ready(function(){
     $("#myTable tr").filter(function() {
       $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
     });
+  });
+  
+  $(".myBtn").click(function(){
+    $("#myModal").modal();
   });
 });
 </script>
