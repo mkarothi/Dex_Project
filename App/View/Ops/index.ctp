@@ -34,7 +34,7 @@
 		  		<?php if($columnName == 'Job_Entry'){ ?>
 		  			<td>
 		  				<?php if($jobResult['BatchJobsStatusData']['Job_Actual_End_Time'] == 'xx:xx') { ?> 
-		  					<a data-toggle="modal" href="#myModal" class="myBtn"><?php echo $value;?> </a>
+		  					<a data-toggle="modal" href="/ops/editjobstatus?jobEntry=<?php echo $jobResult['BatchJobsStatusData']['Job_Entry'] ?>" class="myBtn" target="_blank"><?php echo $value;?> </a>
 		  					
 	  					<?php }else{ ?> 	
 		  					<?php echo $value;?>
