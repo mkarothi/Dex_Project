@@ -2,6 +2,9 @@
 
 App::uses('AppController', 'Controller');
 class OpsController extends AppController {
+	
+	// var $uses = array();
+	
 	function beforeFilter(){
 		$this->layout = "ops";
 	}
@@ -69,6 +72,22 @@ class OpsController extends AppController {
         $exportArray = $rows;
         $filename = $tableName."_".date("Y-m-d-H-i-s") .".xls";
         $this->exportresults($exportArray, $filename);
+	}
+	
+	function editjobstatus($jobEntry = ''){
+		debug($_REQUEST['jobEntry']);
+		
+		debug($this->data);
+		debug($_REQUEST);
+		
+		$updateComments = '';
+		
+		$this->loadModel('BatchJobsStatusData');
+		
+		$conditions = array('BatchJobsStatusData.Job_Entry' => $_REQUEST['jobEntry']);
+		$jobResultData = $this->BatchJobsStatusData->find('first', array("conditions" => $conditions, 
+																	   "order" => "Latest_Check_Time desc" ) );
+		$this->set('jobResultData',  $jobResultData);
 	}
   
 }
