@@ -1,15 +1,12 @@
-<?php
-// debug($jobResultData);
+<?php if(!$statusUpdated){ ?>
 
-
-
-?>
-<div class="col-sm-3 text-left"> 
-	<form method="POST">
+<div class="col-sm-3 text-left">
+	
+	<?php echo $this->Form->create("Ops", array("method" => "POST", "action" => "/editjobstatus?jobEntry=$jobEntry" ) ); ?>
 		
 	  <div class="form-group">
 	    <label for="pwd">Your Name: </label>
-	    <input type="text" class="form-control" name="updated_by">
+	    <?php echo $this->Form->input("updated_by", array("label"=> false, "maxlength" =>"100", "div" =>false, "class"=>"form-control required"));?>
 	  </div>
 	  <div class="form-group">
 		    <label for="email">Job Entry:</label> 
@@ -43,15 +40,20 @@
 	  
 	  <div class="form-group">
 		    <label for="email">Who requested :</label> 
-		    <input type="text" class="form-control" name="comments.who_requested">
+		    <?php echo $this->Form->input("who_requested", array("label"=> false, "maxlength" =>"100", "div" =>false, "class"=>"form-control required"));?>
 		    
 		    <label for="email">How Long will be Ignored:</label> 
-		    <input type="text" class="form-control" name="comments.ignore_time">
+		    <?php echo $this->Form->input("ignore_time", array("label"=> false, "maxlength" =>"100", "div" =>false, "class"=>"form-control required"));?>
 		    
 		    <label for="email">Why:</label> 
-		    <input type="text" class="form-control" name="comments.why">
+		    <?php echo $this->Form->input("why", array("label"=> false, "maxlength" =>"100", "div" =>false, "class"=>"form-control required"));?>
 	  </div>
 		
 	  <button type="submit" class="btn btn-default">Submit</button>
-	</form>
+	<?php echo $this->Form->end();?>
 </div>
+
+<?php } else{ ?>
+	
+<div class="col-sm-3 text-left"> Request Accepted </div>
+<?php } ?>
