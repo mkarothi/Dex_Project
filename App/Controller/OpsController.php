@@ -75,18 +75,42 @@ class OpsController extends AppController {
 	}
 	
 	function editjobstatus($jobEntry = ''){
-		debug($_REQUEST['jobEntry']);
 		
-		debug($this->data);
-		debug($_REQUEST);
-		
-		$updateComments = '';
-		
+		$statusUpdated = false;
 		$this->loadModel('BatchJobsStatusData');
-		
 		$conditions = array('BatchJobsStatusData.Job_Entry' => $_REQUEST['jobEntry']);
 		$jobResultData = $this->BatchJobsStatusData->find('first', array("conditions" => $conditions, 
-																	   "order" => "Latest_Check_Time desc" ) );
+																	     "order" => "Latest_Check_Time desc" ) );
+																	   
+		if(!empty($this->data)){
+			
+			$this->BatchJobsStatusData->Job_Entry = $jobResultData['BatchJobsStatusData']['Job_Entry'];
+			
+			$batchJobStatusDetails['Job_Latest_Status'] = "'ignore'";
+			
+			$batchJobStatusDetails['Job_Status_Comments'] = "'". $jobResultData['BatchJobsStatusData']['Job_Status_Comments'];
+			
+			if($this->data['Ops']['updated_by']){
+				$batchJobStatusDetails['Job_Status_Comments'] .= "\n Updated By: " . $this->data['Ops']['updated_by'];
+			}
+			if($this->data['Ops']['updated_by']){
+				$batchJobStatusDetails['Job_Status_Comments'] .= "\n Who Requested: " . $this->data['Ops']['who_requested'];
+			}
+			if($this->data['Ops']['updated_by']){
+				$batchJobStatusDetails['Job_Status_Comments'] .= "\n Ignore Time: " . $this->data['Ops']['ignore_time'];
+			}
+			if($this->data['Ops']['updated_by']){
+				$batchJobStatusDetails['Job_Status_Comments'] .= "\n Why: " . $this->data['Ops']['why'];
+			}
+			$batchJobStatusDetails['Job_Status_Comments'] .= "'";
+			$batchJobStatusDetails['Job_Actual_End_Time'] = " NOW() ";
+			
+			if($this->BatchJobsStatusData->UpdateAll($batchJobStatusDetails, $conditions)){
+				$statusUpdated = true;
+			}
+		}
+		$this->set("statusUpdated", $statusUpdated);
+		$this->set('jobEntry',  $_REQUEST['jobEntry']);
 		$this->set('jobResultData',  $jobResultData);
 	}
   
