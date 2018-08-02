@@ -1,6 +1,5 @@
 <style>
-	
-	.bmd-modalButton {
+.bmd-modalButton {
   display: block;
   margin: 15px auto;
   padding: 5px 15px;
@@ -47,6 +46,9 @@
 </style>
 
 <div class="col-sm-11 text-left"> 
+</div>
+<div class="col-sm-11 text-left"> 
+	<div class="col-sm-10 text-left"><?php echo $this->Session->flash(); ?></div>
 	<br>
 	<div class="col-sm-6">
 		<input class="form-control" id="myInput" type="text" placeholder="Search...">
@@ -90,7 +92,7 @@
 		  		<?php } elseif($columnName != 'Job_Latest_Status'){ ?>
 	  				<td><?php echo $value;?></td>
 		  		<?php } else { ?>
-		  			<?php if($value == 'Success'){
+		  			<?php if(in_array($value, array('Success', 'Ignore', 'ignore') ) ){
 		  					$tdClass = 'success';
 		  				  }elseif($value == 'Long Running'){
 		  					$tdClass = 'warning';
@@ -98,7 +100,7 @@
 		  					$tdClass = 'danger';
 		  				  }
 	  				?>
-		  			<td class = "<?php echo $tdClass;?>"><?php echo $value;?></td>
+		  			<td class = "bg-<?php echo $tdClass;?>"><div ><?php echo $value;?></td>
 		  		<?php } ?>
 		  	<?php } ?>
 		  	</tr>
