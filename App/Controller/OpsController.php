@@ -81,7 +81,6 @@ class OpsController extends AppController {
 		$conditions = array('BatchJobsStatusData.Job_Entry' => $_REQUEST['jobEntry']);
 		$jobResultData = $this->BatchJobsStatusData->find('first', array("conditions" => $conditions, 
 																	     "order" => "Latest_Check_Time desc" ) );
-																	   
 		if(!empty($this->data)){
 			
 			$this->BatchJobsStatusData->Job_Entry = $jobResultData['BatchJobsStatusData']['Job_Entry'];
@@ -89,30 +88,23 @@ class OpsController extends AppController {
 			$batchJobStatusDetails['Job_Latest_Status'] = "'Ignore'";
 			
 			$batchJobStatusDetails['Job_Status_Comments'] = "'". $jobResultData['BatchJobsStatusData']['Job_Status_Comments'];
-			$hasRequiredDataFilled = 0;
 			if($this->data['Ops']['updated_by']){
-				$hasRequiredDataFilled++;
 				$batchJobStatusDetails['Job_Status_Comments'] .= "\n Updated By: " . $this->data['Ops']['updated_by'];
 			}
 			if($this->data['Ops']['who_requested']){
-				$hasRequiredDataFilled++;
 				$batchJobStatusDetails['Job_Status_Comments'] .= "\n Who Requested: " . $this->data['Ops']['who_requested'];
 			}
 			if($this->data['Ops']['ignore_time']){
-				$hasRequiredDataFilled++;
 				$batchJobStatusDetails['Job_Status_Comments'] .= "\n Ignore Time: " . $this->data['Ops']['ignore_time'];
 			}
 			if($this->data['Ops']['why']){
-				$hasRequiredDataFilled++;
 				$batchJobStatusDetails['Job_Status_Comments'] .= "\n Why: " . $this->data['Ops']['why'];
 			}
 			$batchJobStatusDetails['Job_Status_Comments'] .= "'";
 			$batchJobStatusDetails['Job_Actual_End_Time'] = " NOW() ";
 			
-			if($hasRequiredDataFilled ==4 && $this->BatchJobsStatusData->UpdateAll($batchJobStatusDetails, $conditions)){
+			if($this->BatchJobsStatusData->UpdateAll($batchJobStatusDetails, $conditions)){
 				$statusUpdated = true;
-			}elseif($hasRequiredDataFilled !=4){
-				$this->Session->setFlash("Required Field Missing");
 			}
 		}
 		$this->set("statusUpdated", $statusUpdated);
