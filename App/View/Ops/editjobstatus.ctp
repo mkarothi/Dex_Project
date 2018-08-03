@@ -29,8 +29,7 @@ $(document).ready(function(){
         messages: {
         },
         submitHandler : function(form){
-        	alert('asdas');
-            // form.submit();
+            form.submit();
         }
     });
 });
@@ -94,4 +93,10 @@ $(document).ready(function(){
 <?php } else{ ?>
 	
 <div class="col-sm-3 text-left"> Request Accepted </div>
+
+<script>
+$(document).ready(function(){
+	$('#myModal', window.parent.document).modal('hide');
+});
+</script>
 <?php } ?>
