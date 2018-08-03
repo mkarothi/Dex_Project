@@ -46,10 +46,7 @@
 </style>
 
 <div class="col-sm-11 text-left"> 
-</div>
-<div class="col-sm-11 text-left"> 
-	<div class="col-sm-10 text-left"><?php echo $this->Session->flash(); ?></div>
-	<br>
+	<div class="col-sm-10 text-left"><?php echo $this->Session->flash(); ?></div><br>
 	<div class="col-sm-6">
 		<input class="form-control" id="myInput" type="text" placeholder="Search...">
 	</div>
@@ -93,14 +90,14 @@
 	  				<td><?php echo $value;?></td>
 		  		<?php } else { ?>
 		  			<?php if(in_array($value, array('Success', 'Ignore', 'ignore') ) ){
-		  					$tdClass = 'success';
+		  					$tdClass = 'background-color: #20dc20;';
 		  				  }elseif($value == 'Long Running'){
-		  					$tdClass = 'warning';
+		  					$tdClass = 'background-color: yellow;';
 						  }else {
-		  					$tdClass = 'danger';
+		  					$tdClass = 'background-color: red;';
 		  				  }
 	  				?>
-		  			<td class = "bg-<?php echo $tdClass;?>"><div ><?php echo $value;?></td>
+		  			<td style="<?php echo $tdClass;?>"><?php echo $value;?></td>
 		  		<?php } ?>
 		  	<?php } ?>
 		  	</tr>
@@ -145,36 +142,9 @@ $(document).ready(function(){
     $(this).find('iframe').html("").attr("src", srcAttr);
   });
   
+  window.closeModal = function(){
+    $('#myModal').modal('hide');
+  };
   
 });
-(function($) {
-    
-    $.fn.bmdIframe = function( options ) {
-        var self = this;
-        var settings = $.extend({
-            classBtn: '.bmd-modalbutton',
-            defaultW: 640,
-            defaultH: 360
-        }, options );
-        
-        $(settings.classBtn).on('click', function(e) {
-          console.log($(this).attr('data-bmdSrc'));
-          var dataVideo = {
-            'src': $(this).attr('data-bmdSrc'),
-            'height': $(this).attr('data-bmdHeight') || settings.defaultH,
-            'width': $(this).attr('data-bmdWidth') || settings.defaultW
-          };
-          // stampiamo i nostri dati nell'iframe
-          $(self).find("iframe").attr(dataVideo);
-        });
-
-        // se si chiude la modale resettiamo i dati dell'iframe per impedire ad un video di continuare a riprodursi anche quando la modale è chiusa
-        this.on('hidden.bs.modal', function(){
-          $(this).find('iframe').html("").attr("src", "");
-        });
-      
-        return this;
-    };
-  
-})(jQuery);  
 </script>
