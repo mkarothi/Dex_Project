@@ -1,5 +1,115 @@
 <?php if(!$statusUpdated){ ?>
-	
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <?php echo $this->Html->charset(); ?>
+<title>COVERS</title>
+<!--[if IE 6]><link rel="stylesheet" href="css/covers/ie6.css" type="text/css" media="all" /><![endif]-->
+<?php
+    echo $this->Html->meta('icon');
+    echo $this->Html->css('covers/style');
+    echo $this->Html->script('jquery/jquery-1.3.2.min.js');
+    echo $this->Html->script('jquery/jquery-fns.js');
+?>
+</head>
+<body>
+<div id="page_wrapper">
+    
+    
+    
+    <?php echo $this->Session->flash(); ?>
+
+    <!--start body-->
+    
+    
+    <?php // echo $this->element('Covers/rightsidebar'); ?>
+    <!--end body-->
+    <?php //debug($this->request->params['action']); ?>
+    <?php // if(!in_array($this->request->params['action'], array("storagebilling", "sanstorage") ) ){ ?>
+        <?php echo $this->element('Ops/footer'); ?>
+    <?php // } ?>
+</div><!-- END page_wrapper -->
+
+</html>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<?php echo $this->element('Ops/header'); ?>
+
+<div class="container">
+  <div class="row">
+   
+  </div>
+</div>
+
+</body>
+</html>
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+    /* Remove the navbar's default margin-bottom and rounded borders */ 
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+    
+    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+    .row.content {height: 450px}
+    
+    /* Set gray background color and 100% height */
+    .sidenav {
+      padding-top: 20px;
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+    
+    /* Set black background color, white text and some padding */
+    footer {
+      background-color: #555;
+      color: white;
+      padding: 15px;
+    }
+    
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height:auto;} 
+    }
+  </style>
+</head>
+<body>
+
+<div class="container-fluid text-center">    
+  <div class="row content">
+
+    
 <?php echo $this->Html->script('jquery/plugins/jquery.validate.js?v=1', array('inline' => true)); ?>
 <script>
 $(document).ready(function(){
@@ -89,6 +199,23 @@ $(document).ready(function(){
 	  <button type="submit" class="btn btn-default">Submit</button>
 	<?php echo $this->Form->end();?>
 </div>
+    
+   
+  </div>
+</div>
+
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+	
 
 <?php } else{ ?>
 	
