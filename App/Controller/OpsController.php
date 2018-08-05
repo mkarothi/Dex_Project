@@ -75,7 +75,7 @@ class OpsController extends AppController {
 	}
 	
 	function editjobstatus($jobEntry = ''){
-		
+		$this->layout = false;
 		$statusUpdated = false;
 		$this->loadModel('BatchJobsStatusData');
 		$conditions = array('BatchJobsStatusData.Job_Entry' => $_REQUEST['jobEntry']);
