@@ -87,7 +87,8 @@ class OpsController extends AppController {
 			
 			$batchJobStatusDetails['Job_Latest_Status'] = "'Ignore'";
 			
-			$batchJobStatusDetails['Job_Status_Comments'] = "'". $jobResultData['BatchJobsStatusData']['Job_Status_Comments'];
+			#$batchJobStatusDetails['Job_Status_Comments'] = "'". $jobResultData['BatchJobsStatusData']['Job_Status_Comments'];
+			$batchJobStatusDetails['Job_Status_Comments'] = "'";
 			if($this->data['Ops']['updated_by']){
 				$batchJobStatusDetails['Job_Status_Comments'] .= "\n Updated By: " . $this->data['Ops']['updated_by'];
 			}
