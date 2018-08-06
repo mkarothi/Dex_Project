@@ -86,7 +86,11 @@ $(document).ready(function(){
 <div class="col-sm-3 text-left">
 	
 	<?php echo $this->Form->create("Ops", array("method" => "POST", "action" => "/editjobstatus?jobEntry=$jobEntry", "id" => "jobUpdateForm" ) ); ?>
-		
+	
+		<div class="col-sm-3 text-left">
+	    <h3><u>Setting Job Status to Ignore	</u?</h3>   
+	  </div>
+	
 	  <div class="form-group">
 	    <label for="OpsUpdatedBy">Your Name: </label>
 	    <?php echo $this->Form->input("updated_by", array("label"=> false, "maxlength" =>"100", "div" =>false, "class"=>"form-control required", "error" => false));?>
@@ -149,7 +153,7 @@ $(document).ready(function(){
 
 <?php } else{ ?>
 	
-<div class="col-sm-3 text-left"> Request Accepted </div>
+<div class="col-sm-3 text-left"> Request Accepted, Now you can close this window </div>
 
 <script>
 $(document).ready(function(){
