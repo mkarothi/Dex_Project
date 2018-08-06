@@ -93,13 +93,13 @@ class OpsController extends AppController {
 				$batchJobStatusDetails['Job_Status_Comments'] .= "\n Updated By: " . $this->data['Ops']['updated_by'];
 			}
 			if($this->data['Ops']['who_requested']){
-				$batchJobStatusDetails['Job_Status_Comments'] .= "\n Who Requested: " . $this->data['Ops']['who_requested'];
+				$batchJobStatusDetails['Job_Status_Comments'] .= ", \n Who Requested: " . $this->data['Ops']['who_requested'];
 			}
 			if($this->data['Ops']['ignore_time']){
-				$batchJobStatusDetails['Job_Status_Comments'] .= "\n Ignore Time: " . $this->data['Ops']['ignore_time'];
+				$batchJobStatusDetails['Job_Status_Comments'] .= ", \n Ignore Duration: " . $this->data['Ops']['ignore_time'];
 			}
 			if($this->data['Ops']['why']){
-				$batchJobStatusDetails['Job_Status_Comments'] .= "\n Why: " . $this->data['Ops']['why'];
+				$batchJobStatusDetails['Job_Status_Comments'] .= ", \n Why: " . $this->data['Ops']['why'];
 			}
 			$batchJobStatusDetails['Job_Status_Comments'] .= "'";
 			$batchJobStatusDetails['Job_Actual_End_Time'] = " NOW() ";
@@ -114,7 +114,5 @@ class OpsController extends AppController {
 	}
   
 }
-
-
 
 ?>
